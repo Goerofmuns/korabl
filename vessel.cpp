@@ -1,80 +1,69 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 #include "vessel.hpp"
 
 void Vessel::update()
 {
-	rot+=rot_delta;
-	sf::Vector2f dir = sf::Vector2f(cos(rot * 3.141592/180), sin(rot * 3.141592/180));
-	y_delta+=s_delta * dir.y;
-	x_delta+=s_delta * dir.x;
-	x_loc += x_delta;
-	y_loc += y_delta;
-
-	s_delta = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		translateJet(-0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		translateJet(0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		rotateJet(-0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		rotateJet(0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		rot_delta = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-	{
-		y_delta = 0;
-		x_delta = 0;
-	}
+	//Nop
 }
 
 Vessel::Vessel()
 {
-	x_loc = 300;
-	y_loc = 300;
-	x_delta = 0;
-	y_delta = 0;
-	s_delta = 0;
-	rot = 0;
-	rot_delta = 0;
-}
+	//Init texture
+	this->sprite = new sf::Sprite;
+	this->tex = new sf::Texture;
 
-void Vessel::translateJet(float val)
-{
-	if(val > 1.0f)
-		val = 1.0f;
-	if(val < -1.0f)
-		val = -1.0f;
-
-	s_delta = val;
-}
-
-void Vessel::rotateJet(float val)
-{
-	if(val > 1.0f)
-		val = 1.0f;
-	if(val < -1.0f)
-		val = -1.0f;
-
-	rot_delta += val;
-}
-
-sf::Sprite Vessel::renderVessel()
-{
-	sf::Sprite ret;
-	sf::Texture *tex = new sf::Texture;
-
-	if(!tex->loadFromFile("./asset/tex/vessel.png"))
+	if(!tex->loadFromFile("./asset/tex/tks_shell.png"))
 	{
 		std::cout << "ERR: did not load vessel texture\n";
 	}
-	ret.setTexture(*tex);
-	ret.setPosition(sf::Vector2f(x_loc, y_loc));
-	ret.setRotation(rot - 90);
-	ret.setOrigin(sf::Vector2f(32, 32));
+	sprite->setTexture(*tex);
+	//Middle of image
+	sprite->setOrigin((tex->getSize().x) / 2, (tex->getSize().y) / 2);
+	//Middle of screen
+	sprite->setPosition(1366/2, 768/2);
+	sprite->setRotation(0);
+	sprite->setScale(2, 2);
 
-	return ret;
+	//Initialize Panles
+	panel_sprite = new sf::Sprite;
+	computer_tex = new sf::Texture;
+	status_tex = new sf::Texture;
+	lifesupport_tex = new sf::Texture;
+
+	if(!computer_tex->loadFromFile("./asset/tex/panel/computer.png"))
+	{
+		std::cout << "ERR: did not load computer panel texture\n";
+	}
+	if(!status_tex->loadFromFile("./asset/tex/panel/status.png"))
+	{
+		std::cout << "ERR: did not load status panel texture\n";
+	}
+	if(!lifesupport_tex->loadFromFile("./asset/tex/panel/life_support.png"))
+	{
+		std::cout << "ERR: did not load LS panel texture\n";
+	}
+}
+
+/* void Vessel::draw_panel(Game *game)
+{
+	switch(game->player.cur_panel)
+	{
+		case Player::COMPUTER:
+			
+			break;
+		default:
+			//uhhh
+			game->player.cur_state = Player::FREE;
+			game->player.cur_panel = Player::NONE;
+			break;
+	}
+} */
+
+void Vessel::render(sf::RenderWindow *win)
+{
+	win->draw(*sprite);
 }

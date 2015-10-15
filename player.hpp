@@ -42,7 +42,7 @@ public:
 	sf::Texture *move_tex;
 
 	void update(sf::RenderWindow*);
-	void render(sf::RenderWindow, sf::Clock*);
+	void render(sf::RenderWindow*, sf::Clock*);
 
 private:
 	void handle_input();

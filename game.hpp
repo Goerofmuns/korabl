@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "player.hpp"
+//#include "player.hpp"
 #include "vessel.hpp"
 //#include "computer_panel.hpp"
 #include "texture_manager.hpp"
@@ -17,7 +17,7 @@ public:
 	TextureManager texmgr;
 
 
-	Player player;
+	//Player player;
 	Vessel vessel;
         //	ComputerPanel cpanel;
 

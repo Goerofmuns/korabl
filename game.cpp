@@ -53,20 +53,20 @@ void Game::loop()
 		}
 
 		//Update player
-		player.update(&app);
+		//player.update(&app);
 
 		//Look at panels
-		if(player.cur_state == Player::VIEW_PANEL)
+		/*if(player.cur_state == Player::VIEW_PANEL)
 		{
 			cpanel.update(&player);
 			cpanel.render(&app);
-		}
+                }*/
 
 		app.clear();
 		
 		//They can draw themselves
-		vessel.render(this);
-		player.render(this, &clock);
+		vessel.render(&app);
+		//player.render(&app, &clock);
 
 		//Et voila
 		app.display();
@@ -75,7 +75,7 @@ void Game::loop()
 
 Game::Game()
 {
-	sf::RenderWindow app(sf::VideoMode(200, 200), "SPOICE", sf::Style::Fullscreen); //Construct window
+	sf::RenderWindow app(sf::VideoMode(200, 200), "SPOICE", sf::Style::Default); //Construct window
 	view = app.getView(); //This is for resize thignys
 	load_textures(); //Load the textures
 
