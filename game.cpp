@@ -1,33 +1,6 @@
 #include <iostream>
 
 #include "game.hpp"
-#include "tinydir.h"
-
-void walk_tex_dir(Game *game, const char* dirname)
-{
-	tinydir_dir dir;
-	tinydir_open(&dir, dirname);
-	while(dir.has_next)
-	{
-		tinydir_file file;
-		tinydir_readfile(&dir, &file);
-
-		if(file.is_dir)
-		{
-			walk_tex_dir(game, file.path);
-		}
-		else
-		{
-			game->texmgr.loadTexture(file.name, file.path);
-		}
-	}
-}
-
-void Game::load_textures()
-{
-	std::cout << "Loading Textures...\n";
-	walk_tex_dir(this, "./asset/tex/");
-}
 
 void Game::loop()
 {
@@ -53,7 +26,7 @@ void Game::loop()
 		}
 
 		//Update player
-		//player.update(&app);
+                player.update(&app);
 
 		//Look at panels
 		/*if(player.cur_state == Player::VIEW_PANEL)
@@ -66,18 +39,14 @@ void Game::loop()
 		
 		//They can draw themselves
 		vessel.render(&app);
-		//player.render(&app, &clock);
+		player.render(&app, &clock);
 
 		//Et voila
 		app.display();
 	}
 }
 
-Game::Game()
+Game::Game() : texmgr(), vessel(&texmgr), app(sf::VideoMode(200, 200), "SPOICE", sf::Style::Default)
 {
-	sf::RenderWindow app(sf::VideoMode(200, 200), "SPOICE", sf::Style::Default); //Construct window
-	view = app.getView(); //This is for resize thignys
-	load_textures(); //Load the textures
-
-	//Ready to roll
+	this->view = app.getView(); //This is for resize thignys
 }

@@ -3,11 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "texture_manager.hpp"
+
 //The class that holds vessel info, does handle physics or wotnot
 class Vessel
 {
 public:
-	Vessel();
+	Vessel(TextureManager*);
 
 	//void draw_panel(sf::RenderWindow);
 	void update();
