@@ -1,80 +1,44 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 #include "vessel.hpp"
 
 void Vessel::update()
 {
-	rot+=rot_delta;
-	sf::Vector2f dir = sf::Vector2f(cos(rot * 3.141592/180), sin(rot * 3.141592/180));
-	y_delta+=s_delta * dir.y;
-	x_delta+=s_delta * dir.x;
-	x_loc += x_delta;
-	y_loc += y_delta;
+	//Nop
+}
 
-	s_delta = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		translateJet(-0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		translateJet(0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		rotateJet(-0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		rotateJet(0.1);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		rot_delta = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+Vessel::Vessel(TextureManager* texmgr)
+{
+	//Init texture
+	this->sprite = new sf::Sprite;
+	this->tex = &texmgr->getRef("tks_shell.png");
+
+	sprite->setTexture(*tex);
+	sprite->setOrigin((tex->getSize().x) / 2, (tex->getSize().y) / 2); //Middle of image
+	sprite->setPosition(1366/2, 768/2); //Middle of screen
+	sprite->setRotation(0);
+	sprite->setScale(2, 2);
+}
+
+/* void Vessel::draw_panel(Game *game)
+{
+	switch(game->player.cur_panel)
 	{
-		y_delta = 0;
-		x_delta = 0;
+		case Player::COMPUTER:
+			
+			break;
+		default:
+			//uhhh
+			game->player.cur_state = Player::FREE;
+			game->player.cur_panel = Player::NONE;
+			break;
 	}
-}
+} */
 
-Vessel::Vessel()
+void Vessel::render(sf::RenderWindow *win)
 {
-	x_loc = 300;
-	y_loc = 300;
-	x_delta = 0;
-	y_delta = 0;
-	s_delta = 0;
-	rot = 0;
-	rot_delta = 0;
-}
-
-void Vessel::translateJet(float val)
-{
-	if(val > 1.0f)
-		val = 1.0f;
-	if(val < -1.0f)
-		val = -1.0f;
-
-	s_delta = val;
-}
-
-void Vessel::rotateJet(float val)
-{
-	if(val > 1.0f)
-		val = 1.0f;
-	if(val < -1.0f)
-		val = -1.0f;
-
-	rot_delta += val;
-}
-
-sf::Sprite Vessel::renderVessel()
-{
-	sf::Sprite ret;
-	sf::Texture *tex = new sf::Texture;
-
-	if(!tex->loadFromFile("./asset/tex/vessel.png"))
-	{
-		std::cout << "ERR: did not load vessel texture\n";
-	}
-	ret.setTexture(*tex);
-	ret.setPosition(sf::Vector2f(x_loc, y_loc));
-	ret.setRotation(rot - 90);
-	ret.setOrigin(sf::Vector2f(32, 32));
-
-	return ret;
+	win->draw(*sprite);
 }
