@@ -6,7 +6,7 @@
 
 bool still_pressed = false;
 
-Player::Player()
+Player::Player(TextureManager* texmgr)
 {
 	x_loc = 0;
 	y_loc = 20;
@@ -15,23 +15,11 @@ Player::Player()
 
 	//Init texture
 	sprite = new sf::Sprite;
-	idle_tex = new sf::Texture;
-	sit_tex = new sf::Texture;
-	move_tex = new sf::Texture;
+	idle_tex = &texmgr->getRef("idle.png");
+	sit_tex = &texmgr->getRef("sit.png");
+	move_tex = &texmgr->getRef("move.png");
 
 	//Load textures
-	if(!idle_tex->loadFromFile("./asset/tex/natalya/idle.png"))
-	{
-		std::cout << "ERR: did not load player idle texture\n";
-	}
-	if(!sit_tex->loadFromFile("./asset/tex/natalya/sit.png"))
-	{
-		std::cout << "ERR: did not load player sitting texture\n";
-	}
-	if(!move_tex->loadFromFile("./asset/tex/natalya/move.png"))
-	{
-		std::cout << "ERR: did not load player moving texture\n";
-	}
 
 	sprite->setTexture(*idle_tex);
 	//Middle of image
@@ -44,7 +32,7 @@ Player::Player()
 
 void Player::handle_input()
 {
-	//UPDATE ALL THE THIGSN
+	//UPDATE ALL THE THINGS
 	//Left/Right movement
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -117,6 +105,7 @@ void Player::update(sf::RenderWindow* win)
 	{
 		x_loc = 170;
 		y_loc = 10;
+                x_delta = 1;
 	}
 }
 
@@ -141,8 +130,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	}
 
 	//Middle of screen plus local position
-	sprite->setPosition((1366/2) + x_loc,
-						(768/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
+	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
 	sprite->setRotation(0);
 	sprite->setScale(2.3, 2.3);
 

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-//#include "game.hpp"
+#include "texture_manager.hpp"
 
 class Player
 {
@@ -25,7 +25,7 @@ public:
 		COMPUTER
 	};
 
-	Player();
+	Player(TextureManager*);
 //	~Player();
 	//X and Y locations and deltas
 	float x_loc, y_loc;

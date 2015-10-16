@@ -2,28 +2,26 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <dirent.h>
 
 #include "texture_manager.hpp"
 #include "tinydir.h"
 
-void walk_tex_dir(TextureManager *texmgr, const char* dirname)
+void add_tex_dir(TextureManager* texmgr, const char* dirname)
 {
-	tinydir_dir dir;
-	tinydir_open(&dir, dirname);
-	while(dir.has_next)
-	{
-		tinydir_file file;
-		tinydir_readfile(&dir, &file);
+        DIR *dpdf;
+        struct dirent *epdf;
 
-		if(file.is_dir)
-		{
-			walk_tex_dir(texmgr, file.path);
-		}
-		else
-		{
-			texmgr->loadTexture(file.name, file.path);
-		}
-	}
+        dpdf = opendir("./asset/tex/");
+        while((epdf = readdir(dpdf)))
+        {
+                if(epdf != NULL)
+                {
+                        if(strstr(epdf->d_name, ".png"))
+                                std::cout << epdf->d_type;
+                                texmgr->loadTexture(epdf->d_name, strcat("./asset/tex/", epdf->d_name));
+                }
+        }
 }
 
 void TextureManager::loadTexture(const std::string& name, const std::string& filename)
@@ -44,6 +42,9 @@ sf::Texture& TextureManager::getRef(const std::string& name)
 TextureManager::TextureManager()
 {
         std::cout << "Loading Textures...\n";
-        //walk_tex_dir(this, "asset/tex");
         loadTexture("tks_shell.png", "./asset/tex/tks_shell.png");
+        loadTexture("idle.png", "./asset/tex/natalya/idle.png");
+        loadTexture("sit.png", "./asset/tex/natalya/sit.png");
+        loadTexture("move.png", "./asset/tex/natalya/move.png");
+        //add_tex_dir(this, "./asset/tex/");
 }
