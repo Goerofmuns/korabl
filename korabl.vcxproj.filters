@@ -54,4 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SFML-2.3.2 32-bit\bin\sfml-graphics-2.dll" />
+    <None Include="..\SFML-2.3.2 32-bit\bin\sfml-system-2.dll" />
+    <None Include="..\SFML-2.3.2 32-bit\bin\sfml-window-2.dll" />
+  </ItemGroup>
 </Project>
