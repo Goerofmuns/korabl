@@ -79,25 +79,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="computer_panel.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="texture_manager.cpp" />
-    <ClCompile Include="vessel.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="computer_panel.hpp" />
-    <ClInclude Include="game.hpp" />
-    <ClInclude Include="player.hpp" />
-    <ClInclude Include="space_math.h" />
-    <ClInclude Include="texture_manager.hpp" />
-    <ClInclude Include="vessel.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\SFML-2.3.2 32-bit\bin\sfml-graphics-2.dll" />
     <None Include="..\SFML-2.3.2 32-bit\bin\sfml-system-2.dll" />
     <None Include="..\SFML-2.3.2 32-bit\bin\sfml-window-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\computer_panel.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\texture_manager.cpp" />
+    <ClCompile Include="src\vessel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\computer_panel.hpp" />
+    <ClInclude Include="src\game.hpp" />
+    <ClInclude Include="src\player.hpp" />
+    <ClInclude Include="src\space_math.h" />
+    <ClInclude Include="src\texture_manager.hpp" />
+    <ClInclude Include="src\vessel.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
