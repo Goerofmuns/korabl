@@ -2,12 +2,10 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <dirent.h>
 
 #include "texture_manager.hpp"
-#include "tinydir.h"
 
-void add_tex_dir(TextureManager* texmgr, const char* dirname)
+/*void add_tex_dir(TextureManager* texmgr, const char* dirname)
 {
         DIR *dpdf;
         struct dirent *epdf;
@@ -22,7 +20,7 @@ void add_tex_dir(TextureManager* texmgr, const char* dirname)
                                 texmgr->loadTexture(epdf->d_name, strcat("./asset/tex/", epdf->d_name));
                 }
         }
-}
+}*/
 
 void TextureManager::loadTexture(const std::string& name, const std::string& filename)
 {
