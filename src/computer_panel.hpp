@@ -2,14 +2,14 @@
 #define __COMPUTER_PANEL_H__
 
 #include<SFML/Graphics.hpp>
-#include "game.hpp"
+#include "player.hpp"
 
 class ComputerPanel
 {
 public:
 
 	ComputerPanel();
-	void update(Game*);
+	void update();
 	void render(sf::RenderWindow*);
 
 private:
