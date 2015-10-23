@@ -46,7 +46,7 @@ void Game::loop()
 	}
 }
 
-Game::Game() : texmgr(), player(&texmgr),  vessel(&texmgr), app(sf::VideoMode(200, 200), "SPOICE", sf::Style::Fullscreen)
+Game::Game() : texmgr(), player(&texmgr),  vessel(&texmgr), app(sf::VideoMode(1366, 768), "SPOICE", sf::Style::Fullscreen)
 {
 	this->view = app.getView(); //This is for resize thignys
 }

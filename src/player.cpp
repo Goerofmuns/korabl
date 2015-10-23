@@ -5,6 +5,8 @@
 #include "player.hpp"
 
 bool still_pressed = false;
+bool f_still_pressed = false;
+sf::Text debug_text;
 
 Player::Player(TextureManager* texmgr)
 {
@@ -30,11 +32,11 @@ Player::Player(TextureManager* texmgr)
 	sprite->setRotation(0);
 	sprite->setScale(2.3, 2.3);
 
-	panel_sprite->setTexture(*computer_tex);
-	panel_sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
-	panel_sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc);
+	panel_sprite->setTexture(*panel_tex);
+	panel_sprite->setOrigin((panel_tex->getSize().x) / 2, (panel_tex->getSize().y) / 2);
+	panel_sprite->setPosition((1366/2), (768/2));
 	panel_sprite->setRotation(0);
-	panel_sprite->setScale(2.3, 2.3);
+	panel_sprite->setScale(0.8, 0.8);
 }
 
 void Player::handle_input()
@@ -69,15 +71,31 @@ void Player::handle_input()
 			//Read the panel
 			cur_state = VIEW_PANEL;
 			cur_panel = COMPUTER;
+			std::cout << "changed\n";
 		}
 		still_pressed = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && f_still_pressed == false)
+	{
+		if (cur_state != VIEW_PANEL)
+		{
+			cur_state = VIEW_PANEL;
+			cur_panel = COMPUTER;
+		}
+		else
+		{
+			cur_state = FREE;
+			cur_panel = NONE;
+		}
+		f_still_pressed = true;
 	}
 
 	//Debouncing
 	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-	{
 		still_pressed = false;
-	}
+
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+		f_still_pressed = false;
 }
 
 void Player::update(sf::RenderWindow* win)
@@ -112,7 +130,7 @@ void Player::update(sf::RenderWindow* win)
 	{
 		x_loc = 170;
 		y_loc = 10;
-                x_delta = 1;
+        x_delta = 1;
 	}
 }
 
@@ -127,6 +145,13 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 			sprite->setTextureRect(sf::IntRect(0, 0, idle_tex->getSize().x, idle_tex->getSize().y));
 		sprite->setTexture(*idle_tex);
 	}
+
+	//Middle of screen plus local position
+	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
+	sprite->setRotation(0);
+	sprite->setScale(2.3, 2.3);
+
+
 	if(x_delta == 0)
 	{
 		sprite->setTexture(*idle_tex);
@@ -135,16 +160,10 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	{
 		sprite->setTexture(*sit_tex);
 	}
-	else if(cur_state == VIEW_PANEL)
+	win->draw(*sprite);
+
+	if(cur_state == VIEW_PANEL)
 	{
 		win->draw(*panel_sprite);
 	}
-
-	//Middle of screen plus local position
-	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
-	sprite->setRotation(0);
-	sprite->setScale(2.3, 2.3);
-
-
-	win->draw(*sprite);
 }

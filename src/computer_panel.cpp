@@ -10,7 +10,7 @@ ComputerPanel::ComputerPanel()
 	addr_panel_rect = sf::FloatRect(500, 500, 200, 200);
 }
 
-void ComputerPanel::update(Game *game)
+void ComputerPanel::update()
 {
 	
 }
