@@ -37,9 +37,11 @@ public:
 	viewing_panel cur_panel;
 
 	sf::Sprite *sprite;
+	sf::Sprite *panel_sprite;
 	sf::Texture *idle_tex;
 	sf::Texture *sit_tex;
 	sf::Texture *move_tex;
+	sf::Texture *panel_tex;
 
 	void update(sf::RenderWindow*);
 	void render(sf::RenderWindow*, sf::Clock*);

@@ -15,19 +15,26 @@ Player::Player(TextureManager* texmgr)
 
 	//Init texture
 	sprite = new sf::Sprite;
+	panel_sprite = new sf::Sprite;
 	idle_tex = &texmgr->getRef("idle.png");
 	sit_tex = &texmgr->getRef("sit.png");
 	move_tex = &texmgr->getRef("move.png");
+	panel_tex = &texmgr->getRef("computer_panel.png");
 
 	//Load textures
 
 	sprite->setTexture(*idle_tex);
 	//Middle of image
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
-	//Middle of screen plus local position
 	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc);
 	sprite->setRotation(0);
 	sprite->setScale(2.3, 2.3);
+
+	panel_sprite->setTexture(*computer_tex);
+	panel_sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
+	panel_sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc);
+	panel_sprite->setRotation(0);
+	panel_sprite->setScale(2.3, 2.3);
 }
 
 void Player::handle_input()
@@ -127,6 +134,10 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	if(cur_state == PILOTING)
 	{
 		sprite->setTexture(*sit_tex);
+	}
+	else if(cur_state == VIEW_PANEL)
+	{
+		win->draw(*panel_sprite);
 	}
 
 	//Middle of screen plus local position
