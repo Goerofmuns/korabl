@@ -26,7 +26,7 @@ void Game::loop()
 		}
 
 		//Update player
-                player.update(&app);
+    player.update(&app);
 
 		//Look at panels
 		/*if(player.cur_state == Player::VIEW_PANEL)
@@ -36,7 +36,7 @@ void Game::loop()
                 }*/
 
 		app.clear();
-		
+
 		//They can draw themselves
 		vessel.render(&app);
 		player.render(&app, &clock);
@@ -46,7 +46,7 @@ void Game::loop()
 	}
 }
 
-Game::Game() : texmgr(), player(&texmgr),  vessel(&texmgr), app(sf::VideoMode(1366, 768), "SPOICE", sf::Style::Fullscreen)
+Game::Game() : texmgr(), player(&texmgr),  vessel(&texmgr), app(sf::VideoMode(), "SPOICE", sf::Style::Fullscreen)
 {
 	this->view = app.getView(); //This is for resize thignys
 }
