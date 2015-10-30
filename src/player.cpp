@@ -71,7 +71,6 @@ void Player::handle_input()
 			//Read the panel
 			cur_state = VIEW_PANEL;
 			cur_panel = COMPUTER;
-			std::cout << "changed\n";
 		}
 		still_pressed = true;
 	}
