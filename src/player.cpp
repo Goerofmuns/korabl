@@ -32,7 +32,6 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr)
 	//Load textures
 
 	sprite->setTexture(*idle_tex);
-	//Middle of image
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
 	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc);
 	sprite->setRotation(0);
@@ -80,6 +79,7 @@ void Player::handle_input()
 		}
 		still_pressed = true;
 	}
+	//TODO make this work with e
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && f_still_pressed == false)
 	{
 		if (cur_state != VIEW_PANEL)
@@ -148,6 +148,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 			sprite->setTextureRect(sf::IntRect(idle_tex->getSize().x, 0, -idle_tex->getSize().x, idle_tex->getSize().y));
 		if(x_delta > 0)
 			sprite->setTextureRect(sf::IntRect(0, 0, idle_tex->getSize().x, idle_tex->getSize().y));
+
 		sprite->setTexture(*idle_tex);
 	}
 
