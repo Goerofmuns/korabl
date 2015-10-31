@@ -6,14 +6,20 @@
 
 bool still_pressed = false;
 bool f_still_pressed = false;
+
+int height;
+int width;
 sf::Text debug_text;
 
-Player::Player(TextureManager* texmgr)
+Player::Player(sf::RenderWindow* app, TextureManager* texmgr)
 {
 	x_loc = 0;
 	y_loc = 20;
 	cur_state = FREE;
 	cur_panel = NONE;
+
+	height = app->getSize().y;
+	width  = app->getSize().x;
 
 	//Init texture
 	sprite = new sf::Sprite;
@@ -28,13 +34,13 @@ Player::Player(TextureManager* texmgr)
 	sprite->setTexture(*idle_tex);
 	//Middle of image
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
-	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc);
+	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc);
 	sprite->setRotation(0);
 	sprite->setScale(2.3, 2.3);
 
 	panel_sprite->setTexture(*panel_tex);
 	panel_sprite->setOrigin((panel_tex->getSize().x) / 2, (panel_tex->getSize().y) / 2);
-	panel_sprite->setPosition((1366/2), (768/2));
+	panel_sprite->setPosition((width/2), (height/2));
 	panel_sprite->setRotation(0);
 	panel_sprite->setScale(0.8, 0.8);
 }
@@ -146,7 +152,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	}
 
 	//Middle of screen plus local position
-	sprite->setPosition((1366/2) + x_loc, (768/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
+	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
 	sprite->setRotation(0);
 	sprite->setScale(2.3, 2.3);
 

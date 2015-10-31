@@ -25,7 +25,7 @@ public:
 		COMPUTER
 	};
 
-	Player(TextureManager*);
+	Player(sf::RenderWindow*, TextureManager*);
 //	~Player();
 	//X and Y locations and deltas
 	float x_loc, y_loc;

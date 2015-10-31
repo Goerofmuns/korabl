@@ -9,7 +9,7 @@
 class Vessel
 {
 public:
-	Vessel(TextureManager*);
+	Vessel(sf::RenderWindow*, TextureManager*);
 
 	//void draw_panel(sf::RenderWindow);
 	void update();
