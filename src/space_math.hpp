@@ -21,23 +21,23 @@ namespace mth
 			}
 		};
 
-		double length(Vector3 v)
+		double vlength(Vector3 v)
 		{
 			return sqrtf(v.X * v.X + v.Y * v.Y + v.Z * v.Z);
 		}
 
-		Vector3 scale(Vector3 v, float s)
+		Vector3 vscale(Vector3 v, float s)
 		{
 			return (v.X * s) + (v.Y * s) + (v.Z * s);
 		}
 
-		Vector3 normalize(Vector3 v)
+		Vector3 vnormalize(Vector3 v)
 		{
-			double l = length(v);
-			return scale(v, 1.0 / l);
+			double l = vlength(v);
+			return vscale(v, 1.0 / l);
 		}
 
-		Vector3 dot(Vector3 v1, Vector3 v2)
+		Vector3 vdot(Vector3 v1, Vector3 v2)
 		{
 			Vector3 v_ret(v1.X * v2.X, v1.Y * v2.Y, v1.Z * v2.Z);
 			return v_ret;

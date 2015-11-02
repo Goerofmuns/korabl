@@ -2,8 +2,8 @@
 
 int main()
 {
-	Game game; //SIMPOLZ :)
-	game.loop(); //lets go!
+	Game game;
+	game.loop();
 
 	return 0;
 }
