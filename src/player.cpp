@@ -3,10 +3,11 @@
 #include <cmath>
 
 #include "player.hpp"
+#include "space_math.hpp"
 
 const float X_SPEED = 0.3;
 const float X_MIN   = -400;
-const float X_MAX   = 30;
+const float X_MAX   = 140;
 
 const float Y_SPEED = 0.3;
 const float Y_MAX = 20;
@@ -216,10 +217,17 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	{
 		sprite->setTexture(*idle_tex);
 	}
+
+    if(x_loc > 50 && x_loc < 100)
+    {
+        sprite->setRotation(mth::norm(x_delta) * 80);
+    }
+
 	if(cur_state == PILOTING)
 	{
 		sprite->setTexture(*sit_tex);
 	}
+
 	win->draw(*sprite);
 
 	if(cur_state == VIEW_PANEL)

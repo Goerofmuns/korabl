@@ -7,6 +7,14 @@ float lerp(float value, float start, float end)
 
 namespace mth
 {
+    float norm(float n)
+    {
+        if(n > 0)
+            return 1;
+        if(n < 0)
+            return -1;
+    }
+
 	namespace v3
 	{
 		class Vector3
@@ -43,4 +51,5 @@ namespace mth
 			return v_ret;
 		}
 	}
+    
 }
