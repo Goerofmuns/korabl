@@ -3,3 +3,6 @@ all:
 
 gcc:
 	g++ --std=c++11 main.cpp vessel.cpp player.cpp -o Vessel -I. -lsfml-graphics -lsfml-window -lsfml-system -g
+
+clean:
+	rm ./korabl
