@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "vessel.hpp"
+#include "constants.hpp"
 
 void Vessel::update()
 {
@@ -24,7 +25,7 @@ Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr)
 	sprite->setOrigin((tex->getSize().x) / 2, (tex->getSize().y) / 2); //Middle of image
 	sprite->setPosition(width/2, height/2); //Middle of screen
 	sprite->setRotation(0);
-	sprite->setScale(2, 2);
+	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 }
 
 /* void Vessel::draw_panel(Game *game)

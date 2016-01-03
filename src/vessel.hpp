@@ -4,9 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "texture_manager.hpp"
-//#include "space_math.hpp"
 
-//The class that holds vessel info, does handle physics or wotnot
+//The class that holds vessel info and data
 class Vessel
 {
 public:
@@ -15,6 +14,10 @@ public:
 	//void draw_panel(sf::RenderWindow);
 	void update();
 	void render(sf::RenderWindow*);
+
+    // state
+    bool hatch_open = false; //Is the hatch open?
+    float atm_pres = 1;      //what is the pressure?
 
 private:
 

@@ -3,15 +3,8 @@
 #include <cmath>
 
 #include "player.hpp"
+#include "constants.hpp"
 #include "space_math.hpp"
-
-const float X_SPEED = 0.3;
-const float X_MIN   = -400;
-const float X_MAX   = 140;
-
-const float Y_SPEED = 0.3;
-const float Y_MAX = 20;
-const float Y_MIN = -20;
 
 bool still_pressed = false;
 bool f_still_pressed = false;
@@ -47,7 +40,7 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr)
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
 	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc);
 	sprite->setRotation(0);
-	sprite->setScale(2.3, 2.3);
+	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
 	panel_sprite->setTexture(*panel_tex);
 	panel_sprite->setOrigin((panel_tex->getSize().x) / 2, (panel_tex->getSize().y) / 2);
@@ -218,6 +211,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 		sprite->setTexture(*idle_tex);
 	}
 
+    // we are crawling through tunnel
     if(x_loc > 50 && x_loc < 100)
     {
         sprite->setRotation(mth::norm(x_delta) * 80);
