@@ -6,6 +6,8 @@ This file is where I put all of the stuff I think of, so I don't forget it.
 * create proper resolution scaling
 * get texture manager to auto scan textures
 * get gui into own files
+* add support for multiple spacecraft
+* draw a soyuz or apollo
 
 ## TKS
 IMPORTANT: Model spacecraft, then on update change colliders, then on render change textures.

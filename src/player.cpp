@@ -220,6 +220,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	if(cur_state == PILOTING)
 	{
 		sprite->setTexture(*sit_tex);
+        sprite->setRotation(0);
 	}
 
 	win->draw(*sprite);
