@@ -2,9 +2,6 @@
 
 float lerp(float value, float start, float end)
 {
-    //holy shit I can't maths haha
-    //fix this
-	//return start + (end - start) * value;
     return (end - start) * value;
 }
 
