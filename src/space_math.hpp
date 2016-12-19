@@ -5,6 +5,7 @@ float lerp(float value, float start, float end)
     //holy shit I can't maths haha
     //fix this
 	//return start + (end - start) * value;
+    return (end - start) * value;
 }
 
 namespace mth
@@ -15,6 +16,43 @@ namespace mth
             return 1;
         if(n < 0)
             return -1;
+    }
+
+    namespace v2
+    {
+        class Vector2
+        {
+        public:
+            double X, Y;
+            Vector2(double _x = 0.0, double _y = 0.0)
+            {
+                X = _x;
+                Y = _y;
+            }
+
+            double length()
+            {
+                sqrtf(this->X * this->X + this->Y * this->Y);
+            }
+
+            void scale(double s)
+            {
+                this->X *= s;
+                this->Y *= s;
+            }
+
+            void normalize()
+            {
+                double l = length();
+                vscale(1.0 / l);
+            }
+
+            void dot(Vector2 v2)
+            {
+                this->X = this->X * v2.X;
+                this->Y = this->Y * v2.Y;
+            }
+        }
     }
 
 	namespace v3
