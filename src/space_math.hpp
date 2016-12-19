@@ -48,7 +48,7 @@ namespace math
             void normalize()
             {
                 double l = length();
-                vscale(1.0 / l);
+                this->scale(1.0 / l);
             }
 
             void dot(Vector2 v2)
@@ -56,7 +56,7 @@ namespace math
                 this->X = this->X * v2.X;
                 this->Y = this->Y * v2.Y;
             }
-        }
+        };
 
 		class Vector3
 		{

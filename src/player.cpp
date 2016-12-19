@@ -214,7 +214,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
     // we are crawling through tunnel
     if(x_loc > 50 && x_loc < 100)
     {
-        sprite->setRotation(mth::norm(x_delta) * 80);
+        sprite->setRotation(math::norm(x_delta) * 80);
     }
 
 	if(cur_state == PILOTING)
