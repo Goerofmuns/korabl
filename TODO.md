@@ -7,6 +7,21 @@ This file is where I put all of the stuff I think of, so I don't forget it.
 * remove the hardcoded aspects, make parts and ships more modular
 * get texture manager to auto scan textures
 * better movement system, maybe use mouse?
+* game heirarchy:
+```
+    Space
+      |
+      |
+    Vessel
+      |
+      | <- Docking
+      |
+    Module
+      |
+      | <- Contains
+      |
+    Objects
+```
 
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
