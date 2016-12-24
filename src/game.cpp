@@ -25,28 +25,30 @@ void Game::loop()
 			}
 		}
 
-		//Update player
-        player.update(&app);
-
-		//Look at panels
-		/*if(player.cur_state == Player::VIEW_PANEL)
-		{
-			cpanel.update(&player);
-			cpanel.render(&app);
-                }*/
+		//Update gameobjects
+        for (auto &obj : gameobjects)
+        {
+            obj->update(&app);
+        }
 
 		app.clear();
 
 		//They can draw themselves
-		vessel.render(&app);
-		player.render(&app, &clock);
+        for (auto &obj : gameobjects)
+        {
+            obj->render(&app, &clock);
+        }
 
 		//Et voila
 		app.display();
 	}
 }
 
-Game::Game() : texmgr(), app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen), player(&app, &texmgr), vessel(&app, &texmgr)
+Game::Game() : texmgr(), app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen)
 {
 	this->view = app.getView(); //This is for resize thignys
+
+    //add gameobjects
+    this->objectVector.push_back(new Player(&app, &texmgr));
+    this->objectVector.push_back(new Vessel(&app, &texmgr));
 }

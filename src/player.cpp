@@ -3,7 +3,7 @@
 #include <cmath>
 
 #include "player.hpp"
-#include "constants.hpp"
+#include "util.hpp"
 #include "space_math.hpp"
 
 bool still_pressed = false;
@@ -14,7 +14,7 @@ int height;
 int width;
 sf::Text debug_text;
 
-Player::Player(sf::RenderWindow* app, TextureManager* texmgr)
+Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 {
 	x_loc = 0;
 	y_loc = 20;

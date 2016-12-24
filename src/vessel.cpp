@@ -4,14 +4,14 @@
 #include <SFML/Graphics.hpp>
 
 #include "vessel.hpp"
-#include "constants.hpp"
+#include "util.hpp"
 
-void Vessel::update()
+void Vessel::update(sf::RenderWindow)
 {
 	//Nop
 }
 
-Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr)
+Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr) : GameObject
 {
 
 	int height = app->getSize().y;
@@ -43,7 +43,7 @@ Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr)
 	}
 } */
 
-void Vessel::render(sf::RenderWindow *win)
+void Vessel::render(sf::RenderWindow *win, sf::Clock *clock)
 {
 	win->draw(*sprite);
 }

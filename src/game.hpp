@@ -15,9 +15,10 @@ public:
 	sf::Clock clock;
 	TextureManager texmgr;
 
-
-	Player player;
-	Vessel vessel;
+    //all gameobjects
+    std::Vector<GameObject> objectVector;
+	//Player player;
+	//Vessel vessel;
     //ComputerPanel cpanel;
 
 	Game();

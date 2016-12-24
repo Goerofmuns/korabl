@@ -1,7 +1,6 @@
 #include<cmath>
 
-
-namespace math
+namespace Math
 {
     float lerp(float value, float start, float end)
     {

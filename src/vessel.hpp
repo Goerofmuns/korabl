@@ -6,14 +6,14 @@
 #include "texture_manager.hpp"
 
 //The class that holds vessel info and data
-class Vessel
+class Vessel : GameObject
 {
 public:
 	Vessel(sf::RenderWindow*, TextureManager*);
 
 	//void draw_panel(sf::RenderWindow);
-	void update();
-	void render(sf::RenderWindow*);
+    virtual void update(sf::RenderWindow);
+	virtual void render(sf::RenderWindow*, sf::Clock*);
 
     // state
     bool hatch_open = false; //Is the hatch open?

@@ -39,10 +39,10 @@ sf::Texture& TextureManager::getRef(const std::string& name)
 
 TextureManager::TextureManager()
 {
-        std::cout << "Loading Textures...\n";
-        loadTexture("tks_shell.png", "./asset/tex/tks_shell.png");
-        loadTexture("idle.png", "./asset/tex/natalya/idle.png");
-        loadTexture("sit.png", "./asset/tex/natalya/sit.png");
-        loadTexture("move.png", "./asset/tex/natalya/move.png");
-        loadTexture("computer_panel.png", "./asset/tex/computer_panel.png");
+    std::cout << "Loading Textures...\n";
+    loadTexture("tks_shell.png", "./asset/tex/tks_shell.png");
+    loadTexture("idle.png", "./asset/tex/natalya/idle.png");
+    loadTexture("sit.png", "./asset/tex/natalya/sit.png");
+    loadTexture("move.png", "./asset/tex/natalya/move.png");
+    loadTexture("computer_panel.png", "./asset/tex/computer_panel.png");
 }
