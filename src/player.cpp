@@ -7,14 +7,18 @@
 #include "space_math.hpp"
 
 bool still_pressed = false;
-bool r_still_pressed = false;
 
 int height;
 int width;
 sf::Text debug_text;
+sf::Font debug_font;
 
 Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 {
+    debug_font.loadFromFile("Courier New.ttf");
+    debug_text.setFont(debug_font);
+    debug_text.setCharacterSize(34);
+
 	loc.X = 0;
 	loc.Y = 20;
     delta.X = 0;
@@ -107,18 +111,9 @@ void Player::handle_input()
 		still_pressed = true;
 	}
 
-    //Print Debug text
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && r_still_pressed == false)
-    {
-        std::cout << "[DEBUG]POS: " << loc.X << ":" << loc.Y << "\n";
-    }
-
 	//Debouncing
 	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		still_pressed = false;
-
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-		r_still_pressed = false;
 }
 
 //This is gonna get ugly...
@@ -179,10 +174,14 @@ void Player::update()
         loc.Y = 10;
         delta.X = 1;
 	}
+
+    debug_text.setString(std::string("[DEBUG]POS:") + std::to_string(loc.X));
 }
 
 void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 {
+    win->draw(debug_text);
+
 	//Set sprite
 	if(delta.X != 0)
 	{
