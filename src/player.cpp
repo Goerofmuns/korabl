@@ -75,7 +75,6 @@ void Player::handle_input()
 		delta.Y = Y_SPEED;
 	}
 
-
 	//Toggle panel/piloting state
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && still_pressed == false)
 	{
