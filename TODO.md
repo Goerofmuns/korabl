@@ -36,7 +36,13 @@ On each game tick the vessels are moved based on their velocty.
 ### Module
 The Module class is a single part of a vessel. It connects to other
 Modules via docking ports, and shares power/air/resources. Multiple
-connected Modules form a single Vessel.
+connected Modules form a single Vessel. A module could be a Command Module, 
+a Living Space, Computer Room, Engine Room, or more.
+
+* Air Pressure
+* Volume (m ^ 2)
+* Internal and External Collider
+* Hatches / States (Open / Closed / Moving)
 
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
