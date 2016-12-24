@@ -16,9 +16,9 @@ public:
     virtual void update();
 	virtual void render(sf::RenderWindow*, sf::Clock*);
 
-    // state
-    bool hatch_open = false; //Is the hatch open?
-    float atm_pres = 1;      //what is the pressure?
+    //individual properties
+    std::string shipName;
+    float pressure;
 
 private:
 

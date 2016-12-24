@@ -8,7 +8,6 @@ This file is where I put all of the stuff I think of, so I don't forget it.
 * Implement a modular system for panels
 * remove the hardcoded aspects, make parts and ships more modular
 * get texture manager to auto scan textures
-* better movement system, maybe use mouse?
 * game heirarchy:
 ```
     Space
@@ -34,6 +33,7 @@ consists of a tree structure of modules. A vessel has several properties:
 * Mass
 
 On each game tick the vessels are moved based on their velocty.
+Vessels should be serializable, in order for multiplayer to function.
 
 ### Module
 The Module class is a single part of a vessel. It connects to other
