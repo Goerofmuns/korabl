@@ -8,7 +8,7 @@ namespace Math
     /*float lerp(float value, float start, float end)
     {
         return (end - start) * value;
-    }
+    } 
 
     float norm(float n)
     {
@@ -30,7 +30,7 @@ namespace Math
 
         double length()
         {
-            sqrtf(this->X * this->X + this->Y * this->Y);
+            return sqrtf(this->X * this->X + this->Y * this->Y);
         }
 
         void translate(Vector2 v2)

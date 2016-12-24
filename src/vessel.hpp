@@ -25,11 +25,6 @@ private:
 	sf::Sprite *sprite;
 	sf::Texture *tex;
 
-	sf::Sprite *panel_sprite;
-	sf::Texture *computer_tex;
-	sf::Texture *status_tex;
-	sf::Texture *lifesupport_tex;
-
 };
 
 #endif

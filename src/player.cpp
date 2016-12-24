@@ -7,7 +7,6 @@
 #include "space_math.hpp"
 
 bool still_pressed = false;
-bool f_still_pressed = false;
 bool r_still_pressed = false;
 
 int height;
@@ -108,18 +107,15 @@ void Player::handle_input()
 		still_pressed = true;
 	}
 
-  //Print Debug text
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && r_still_pressed == false)
+    //Print Debug text
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && r_still_pressed == false)
     {
-      std::cout << "[DEBUG]POS: " << loc.X << ":" << loc.Y << "\n";
+        std::cout << "[DEBUG]POS: " << loc.X << ":" << loc.Y << "\n";
     }
 
 	//Debouncing
 	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		still_pressed = false;
-
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::F))
-		f_still_pressed = false;
 
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		r_still_pressed = false;
@@ -210,10 +206,10 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 	}
 
     // we are crawling through tunnel
-    if(loc.X > 50 && loc.X < 100)
+    /*if(loc.X > 50 && loc.X < 100)
     {
-//        sprite->setRotation(Math::norm(delta.X) * 80);
-    }
+        sprite->setRotation(Math::norm(delta.X) * 80);
+    }*/
 
 	if(cur_state == PILOTING)
 	{

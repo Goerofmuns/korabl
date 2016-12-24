@@ -44,7 +44,7 @@ void Game::loop()
 	}
 }
 
-Game::Game() : texmgr(), app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen)
+Game::Game() : app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen), texmgr()
 {
 	this->view = app.getView(); //This is for resize thignys
 

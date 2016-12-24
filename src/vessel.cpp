@@ -33,18 +33,3 @@ Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 }
 
-/* void Vessel::draw_panel(Game *game)
-{
-	switch(game->player.cur_panel)
-	{
-		case Player::COMPUTER:
-
-			break;
-		default:
-			//uhhh
-			game->player.cur_state = Player::FREE;
-			game->player.cur_panel = Player::NONE;
-			break;
-	}
-} */
-
