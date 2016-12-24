@@ -2,6 +2,8 @@
 This file is where I put all of the stuff I think of, so I don't forget it.
 
 ##Game
+
+* **IMPORTANT** make topdown
 * Implement a local coordinates system independent of window resolution
 * Implement a modular system for panels
 * remove the hardcoded aspects, make parts and ships more modular
