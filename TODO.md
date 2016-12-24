@@ -23,6 +23,21 @@ This file is where I put all of the stuff I think of, so I don't forget it.
     Objects
 ```
 
+### Vessel
+The Vessel class encompasses any object floating in space. The vessel
+consists of a tree structure of modules. A vessel has several properties:
+
+* X and Y coords
+* X and Y velocity
+* Mass
+
+On each game tick the vessels are moved based on their velocty.
+
+### Module
+The Module class is a single part of a vessel. It connects to other
+Modules via docking ports, and shares power/air/resources. Multiple
+connected Modules form a single Vessel.
+
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
 * make a functional panel for control
