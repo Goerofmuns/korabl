@@ -6,12 +6,17 @@
 #include "vessel.hpp"
 #include "util.hpp"
 
-void Vessel::update(sf::RenderWindow)
+virtual void Vessel::update(sf::RenderWindow)
 {
 	//Nop
 }
 
-Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr) : GameObject
+virtual void Vessel::render(sf::RenderWindow *win, sf::Clock *clock)
+{
+	win->draw(*sprite);
+}
+
+Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 {
 
 	int height = app->getSize().y;
@@ -43,7 +48,3 @@ Vessel::Vessel(sf::RenderWindow* app, TextureManager* texmgr) : GameObject
 	}
 } */
 
-void Vessel::render(sf::RenderWindow *win, sf::Clock *clock)
-{
-	win->draw(*sprite);
-}

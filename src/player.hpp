@@ -28,10 +28,10 @@ public:
 	Player(sf::RenderWindow*, TextureManager*);
 //	~Player();
 	//X and Y locations and deltas
-	float x_loc, y_loc;
-	float x_delta, y_delta;
+	//float x_loc, y_loc;
+	//float x_delta, y_delta;
 	//Rotation in degrees
-	float rot;
+	//float rot;
 
 	player_state cur_state;
 	viewing_panel cur_panel;
@@ -43,8 +43,8 @@ public:
 	sf::Texture *move_tex;
 	sf::Texture *panel_tex;
 
-	void update(sf::RenderWindow*);
-	void render(sf::RenderWindow*, sf::Clock*);
+	virtual void update(sf::RenderWindow*);
+	virtual void render(sf::RenderWindow*, sf::Clock*);
 
 private:
 	void handle_input();

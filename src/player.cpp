@@ -16,9 +16,9 @@ sf::Text debug_text;
 
 Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 {
-	x_loc = 0;
-	y_loc = 20;
-    x_delta = 0;
+	loc->X = 0;
+	loc->Y = 20;
+    delta->X = 0;
 
 	cur_state = FREE;
 	cur_panel = NONE;
@@ -38,7 +38,7 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 
 	sprite->setTexture(*idle_tex);
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
-	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc);
+	sprite->setPosition((width/2) + loc->X, (height/2) + loc->Y);
 	sprite->setRotation(0);
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
@@ -55,21 +55,21 @@ void Player::handle_input()
 	//Left/Right movement
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		x_delta = -X_SPEED;
+		delta->X = -X_SPEED;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		x_delta = X_SPEED;
+		delta->X = X_SPEED;
 	}
 
     //Up/Down movement
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		y_delta = -Y_SPEED;
+		delta->Y = -Y_SPEED;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		y_delta = Y_SPEED;
+		delta->Y = Y_SPEED;
 	}
 
 
@@ -81,19 +81,19 @@ void Player::handle_input()
 			//stop piloting or looking at panel
 			cur_state = FREE;
 		}
-		else if(x_loc > 30 && cur_state != PILOTING)
+		else if(loc->X > 30 && cur_state != PILOTING)
 		{
 			//We wanna get flying
 			cur_state = PILOTING;
 			cur_panel = FLIGHT;
 		}
-		else if(x_loc < 30 && x_loc > 400)
+		else if(loc->X < 30 && loc->X > 400)
 		{
 			//Read the panel
 			cur_state = VIEW_PANEL;
 			cur_panel = COMPUTER;
 		}
-    else if(x_loc < -10 && x_loc > -30)
+    else if(loc->X < -10 && loc->X > -30)
     {
       if(cur_state != VIEW_PANEL)
         {
@@ -112,7 +112,7 @@ void Player::handle_input()
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && r_still_pressed == false)
     {
       std::cout << "--DEBUG--" << "\n";
-      std::cout << "POS: " << x_loc << ":" << y_loc << "\n";
+      std::cout << "POS: " << loc->X << ":" << loc->Y << "\n";
       std::cout << "--DEBUG--" << "\n";
     }
 
@@ -128,93 +128,93 @@ void Player::handle_input()
 }
 
 //This is gonna get ugly...
-void Player::update(sf::RenderWindow* win)
+virtual void Player::update(sf::RenderWindow* win)
 {
 	//Handle it.
 	handle_input();
 
     // X STUFF
 	//Don't go too fast
-	if(x_delta > 0.3)
-		x_delta = 0.3;
-	if(x_delta < -0.3)
-		x_delta = -0.3;
+	if(delta->X > 0.3)
+		delta->X = 0.3;
+	if(delta->X < -0.3)
+		delta->X = -0.3;
 
-	x_loc += x_delta;
+	loc->X += delta->X;
 
 	//Don't keep going
-	if(x_delta < 0.00)
-		x_delta += 0.001;
-	if(x_delta > 0.00)
-		x_delta -= 0.001;
-	if(x_delta < 0.01 && x_delta > -0.01)
-		x_delta = 0;
+	if(delta->X < 0.00)
+		delta->X += 0.001;
+	if(delta->X > 0.00)
+		delta->X -= 0.001;
+	if(delta->X < 0.01 && delta->X > -0.01)
+		delta->X = 0;
 
 	//Don't fly into space
-	if(x_loc < X_MIN)
-		x_loc = X_MIN;
-	if(x_loc > X_MAX)
-		x_loc = X_MAX;
+	if(loc->X < X_MIN)
+		loc->X = X_MIN;
+	if(loc->X > X_MAX)
+		loc->X = X_MAX;
 
     // Y STUFF
 	//Don't go too fast
-	if(y_delta > 0.3)
-		y_delta = 0.3;
-	if(y_delta < -0.3)
-		y_delta = -0.3;
+	if(delta->Y > 0.3)
+		delta->Y = 0.3;
+	if(delta->Y < -0.3)
+		delta->Y = -0.3;
 
-	y_loc += y_delta;
+	loc->Y += delta->Y;
 
 	//Don't keep going
-	if(y_delta < 0.00)
-		y_delta += 0.001;
-	if(y_delta > 0.00)
-		y_delta -= 0.001;
-	if(y_delta < 0.01 && y_delta > -0.01)
-		y_delta = 0;
+	if(delta->Y < 0.00)
+		delta->Y += 0.001;
+	if(delta->Y > 0.00)
+		delta->Y -= 0.001;
+	if(delta->Y < 0.01 && delta->Y > -0.01)
+		delta->Y = 0;
 
 	//Don't fly into space
-	if(y_loc < Y_MIN)
-		y_loc = Y_MIN;
-	if(y_loc > Y_MAX)
-		y_loc = Y_MAX;
+	if(loc->Y < Y_MIN)
+		loc->Y = Y_MIN;
+	if(loc->Y > Y_MAX)
+		loc->Y = Y_MAX;
 
 	if(cur_state == PILOTING)
 	{
-		x_loc = 170;
-        y_loc = 10;
-        x_delta = 1;
+		loc->X = 170;
+        loc->Y = 10;
+        delta->X = 1;
 	}
 }
 
-void Player::render(sf::RenderWindow *win, sf::Clock *clock)
+virtual void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 {
 	//Set sprite
-	if(x_delta != 0)
+	if(delta->X != 0)
 	{
-		if(x_delta < 0)
+		if(delta->X < 0)
 			sprite->setTextureRect(sf::IntRect(idle_tex->getSize().x, 0, -idle_tex->getSize().x, idle_tex->getSize().y));
-		if(x_delta > 0)
+		if(delta->X > 0)
 			sprite->setTextureRect(sf::IntRect(0, 0, idle_tex->getSize().x, idle_tex->getSize().y));
 
 		sprite->setTexture(*idle_tex);
 	}
 
 	//Middle of screen plus local position
-	sprite->setPosition((width/2) + x_loc, (height/2) + y_loc + (sin(clock->getElapsedTime().asSeconds())));
-	sprite->setRotation(x_delta * 20);
+	sprite->setPosition((width/2) + loc->X, (height/2) + loc->Y + (sin(clock->getElapsedTime().asSeconds())));
+	sprite->setRotation(delta->X * 20);
 	sprite->setScale(2.3, 2.3);
 
 
-	if(x_delta == 0)
+	if(delta->X == 0)
 	{
 		sprite->setTexture(*idle_tex);
 	}
 
     // we are crawling through tunnel
-    if(x_loc > 50 && x_loc < 100)
+    if(loc->X > 50 && loc->X < 100)
     {
-        sprite->setRotation(math::norm(x_delta) * 80);
+        sprite->setRotation(math::norm(delta->X) * 80);
     }
 
 	if(cur_state == PILOTING)
