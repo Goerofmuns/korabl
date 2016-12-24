@@ -23,33 +23,18 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 	loc.Y = 20;
     delta.X = 0;
 
-	cur_state = FREE;
-	cur_panel = NONE;
-
 	height = app->getSize().y;
 	width  = app->getSize().x;
 
 	//Init texture
 	sprite = new sf::Sprite;
-	panel_sprite = new sf::Sprite;
-	idle_tex = &texmgr->getRef("idle.png");
-	sit_tex = &texmgr->getRef("sit.png");
-	move_tex = &texmgr->getRef("move.png");
-	panel_tex = &texmgr->getRef("computer_panel.png");
 
 	//Load textures
-
 	sprite->setTexture(*idle_tex);
 	sprite->setOrigin((idle_tex->getSize().x) / 2, (idle_tex->getSize().y) / 2);
 	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y);
 	sprite->setRotation(0);
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
-
-	panel_sprite->setTexture(*panel_tex);
-	panel_sprite->setOrigin((panel_tex->getSize().x) / 2, (panel_tex->getSize().y) / 2);
-	panel_sprite->setPosition((width/2), (height/2));
-	panel_sprite->setRotation(0);
-	panel_sprite->setScale(0.8, 0.8);
 }
 
 void Player::handle_input()
@@ -73,41 +58,6 @@ void Player::handle_input()
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		delta.Y = Y_SPEED;
-	}
-
-	//Toggle panel/piloting state
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && still_pressed == false)
-	{
-		if(cur_state == PILOTING || cur_state == VIEW_PANEL)
-		{
-			//stop piloting or looking at panel
-			cur_state = FREE;
-		}
-		else if(loc.X > 30 && cur_state != PILOTING)
-		{
-			//We wanna get flying
-			cur_state = PILOTING;
-			cur_panel = FLIGHT;
-		}
-		else if(loc.X < 30 && loc.X > 400)
-		{
-			//Read the panel
-			cur_state = VIEW_PANEL;
-			cur_panel = COMPUTER;
-		}
-    else if(loc.X < -10 && loc.X > -30)
-    {
-      if(cur_state != VIEW_PANEL)
-        {
-          cur_state = VIEW_PANEL;
-          cur_panel = COMPUTER;
-        }
-      else if(cur_state == VIEW_PANEL)
-        {
-          cur_state = FREE;
-        }
-    }
-		still_pressed = true;
 	}
 
 	//Debouncing
@@ -167,58 +117,17 @@ void Player::update()
 	if(loc.Y > Y_MAX)
 		loc.Y = Y_MAX;
 
-	if(cur_state == PILOTING)
-	{
-		loc.X = 170;
-        loc.Y = 10;
-        delta.X = 1;
-	}
-
     debug_text.setString(std::string("[DEBUG]POS:") + std::to_string(loc.X));
 }
 
 void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 {
-    win->draw(debug_text);
-
-	//Set sprite
-	if(delta.X != 0)
-	{
-		if(delta.X < 0)
-			sprite->setTextureRect(sf::IntRect(idle_tex->getSize().x, 0, -idle_tex->getSize().x, idle_tex->getSize().y));
-		if(delta.X > 0)
-			sprite->setTextureRect(sf::IntRect(0, 0, idle_tex->getSize().x, idle_tex->getSize().y));
-
-		sprite->setTexture(*idle_tex);
-	}
-
 	//Middle of screen plus local position
 	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y + (sin(clock->getElapsedTime().asSeconds())));
 	sprite->setRotation(delta.X * 20);
 	sprite->setScale(2.3, 2.3);
 
-
-	if(delta.X == 0)
-	{
-		sprite->setTexture(*idle_tex);
-	}
-
-    // we are crawling through tunnel
-    /*if(loc.X > 50 && loc.X < 100)
-    {
-        sprite->setRotation(Math::norm(delta.X) * 80);
-    }*/
-
-	if(cur_state == PILOTING)
-	{
-		sprite->setTexture(*sit_tex);
-        sprite->setRotation(0);
-	}
+    win->draw(debug_text);
 
 	win->draw(*sprite);
-
-	if(cur_state == VIEW_PANEL)
-	{
-		win->draw(*panel_sprite);
-	}
 }
