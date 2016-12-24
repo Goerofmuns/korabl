@@ -14,8 +14,6 @@ public:
 
 private:
 	std::map<std::string, sf::Texture> textures;
-
-
 };
 
 #endif

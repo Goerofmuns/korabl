@@ -45,5 +45,4 @@ TextureManager::TextureManager()
         loadTexture("sit.png", "./asset/tex/natalya/sit.png");
         loadTexture("move.png", "./asset/tex/natalya/move.png");
         loadTexture("computer_panel.png", "./asset/tex/computer_panel.png");
-        //add_tex_dir(this, "./asset/tex/");
 }

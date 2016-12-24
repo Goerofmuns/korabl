@@ -26,7 +26,7 @@ void Game::loop()
 		}
 
 		//Update player
-    player.update(&app);
+        player.update(&app);
 
 		//Look at panels
 		/*if(player.cur_state == Player::VIEW_PANEL)
