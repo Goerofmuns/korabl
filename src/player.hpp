@@ -4,8 +4,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "texture_manager.hpp"
+#include "util.hpp"
 
-class Player
+class Player : public GameObject
 {
 public:
 
@@ -43,7 +44,7 @@ public:
 	sf::Texture *move_tex;
 	sf::Texture *panel_tex;
 
-	virtual void update(sf::RenderWindow*);
+	virtual void update();
 	virtual void render(sf::RenderWindow*, sf::Clock*);
 
 private:

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "util.hpp"
 #include "player.hpp"
 #include "vessel.hpp"
 #include "texture_manager.hpp"
@@ -16,7 +17,7 @@ public:
 	TextureManager texmgr;
 
     //all gameobjects
-    std::Vector<GameObject> objectVector;
+    std::vector<GameObject*> objectVector;
 	//Player player;
 	//Vessel vessel;
     //ComputerPanel cpanel;

@@ -6,12 +6,12 @@
 #include "vessel.hpp"
 #include "util.hpp"
 
-virtual void Vessel::update(sf::RenderWindow)
+void Vessel::update()
 {
 	//Nop
 }
 
-virtual void Vessel::render(sf::RenderWindow *win, sf::Clock *clock)
+void Vessel::render(sf::RenderWindow *win, sf::Clock *clock)
 {
 	win->draw(*sprite);
 }

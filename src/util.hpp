@@ -2,6 +2,7 @@
 #define __UTIL_H__
 
 #include <SFML/System.hpp>
+
 #include "space_math.hpp"
 
 const float GLOBAL_SCALE = 2;
@@ -14,21 +15,19 @@ const float Y_SPEED = 0.3;
 const float Y_MAX = 20;
 const float Y_MIN = -20;
 
-using namespace Math::Vector;
-
 class GameObject
 {
 public:
-    Vector2 loc;
-    Vector2 delta;
+    Math::Vector2 loc;
+    Math::Vector2 delta;
 
-    virtual void update(sf::RenderWindow);
-    virtual void render(sf::RenderWindow*, sf::Clock*);
-    GameObject()
+    virtual void update() = 0;
+    virtual void render(sf::RenderWindow*, sf::Clock*) = 0;
+    /*inline GameObject()
     {
         this->loc = Vector2(0.0, 0.0);
         this->delta = Vector2(0.0, 0.0);
-    }
+    } */
 };
 
 #endif

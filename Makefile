@@ -8,7 +8,7 @@ osx:
 		-I./src/ -I /usr/local/include \
 		-L ./libsfml \
 		-lsfml-graphics -lsfml-window -lsfml-system \
-		-Wall
+		-w
 
 else
 linux:

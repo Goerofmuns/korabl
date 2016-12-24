@@ -26,15 +26,15 @@ void Game::loop()
 		}
 
 		//Update gameobjects
-        for (auto &obj : gameobjects)
+        for (auto* obj : objectVector)
         {
-            obj->update(&app);
+            obj->update();
         }
 
 		app.clear();
 
 		//They can draw themselves
-        for (auto &obj : gameobjects)
+        for (auto* obj : objectVector)
         {
             obj->render(&app, &clock);
         }
