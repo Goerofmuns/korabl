@@ -18,7 +18,7 @@ public:
 
 	Player player;
 	Vessel vessel;
-        //	ComputerPanel cpanel;
+    //ComputerPanel cpanel;
 
 	Game();
 	void loop();
