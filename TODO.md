@@ -54,29 +54,36 @@ Along the
 Modules can be specified in a file format. They are situated in a
 folder structure as below:
 ```
-Modules/
+modules/
 \
  |
  Module A/
  | \
  |  |-module.json
- |  \-texture.png
+ |  |-int_texture.png
+ |  \-ext_texture.png
  |
  Module B/
    \
     |-module.json
-    \-texture.png
+    |-int_texture.png
+    \-ext_texture.png
 ```  
 
 Modules are specified in a JSON format. The format specifies
 module external and internal size, air volume, and resource info.
 Resources are either stored in Containers, or created by Generators.
 
+**Interior Coordinates**
+Modules have an internal coordinate system, roughly equivalent to metres.
+Most modules have a height of 4, with narrows (docking tunnels etc) of 2.
+
 An example module.json, for the TKS itself, is below.
 ```
 {
     "name":"TKS",
     "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van.",
+    "size":[10,4],
     "volume":45,
 
     "sections":
