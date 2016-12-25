@@ -76,8 +76,8 @@ An example module.json, for the TKS itself, is below.
 ```
 {
     "name":"TKS",
-    "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van."
-    "volume":45
+    "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van.",
+    "volume":45,
 
     "sections":
     {
