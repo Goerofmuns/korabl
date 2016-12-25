@@ -13,10 +13,11 @@ This requires redrawing the side view TKS as top down.
 * https://en.wikipedia.org/wiki/TKS_(spacecraft)
 * http://www.astronautix.com/t/tks.html
 
-* http://www.russianspaceweb.com/almaz.html
-
 **Mir**
 * https://en.wikipedia.org/wiki/Mir
 * http://www.astronautix.com/m/mir.html
 * http://www.russianspaceweb.com/mir.html
+
+* http://www.russianspaceweb.com/almaz.html
+* http://www.russianspaceweb.com/docking.html
 
