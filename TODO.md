@@ -59,23 +59,40 @@ Modules/
  |
  Module A/
  | \
- |  |-module.yaml
+ |  |-module.json
  |  \-texture.png
  |
  Module B/
    \
-    |-module.yaml
+    |-module.json
     \-texture.png
 ```  
-Modules are specified in a YAML format, in order to be both easily
-readable by Korabl and writeable by humans. The format specifies
+
+Modules are specified in a JSON format. The format specifies
 module external and internal size, air volume, and resource info.
 Resources are either stored in Containers, or created by Generators.
 
-An example module.yaml, for the Korabl itself, is below.
-
+An example module.json, for the TKS itself, is below.
 ```
+{
+    "name":"TKS",
+    "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van."
+    "volume":45
 
+    "sections":
+    {
+        /* [width, height] */
+        "docking port":[2, 2],
+        "living space":[5, 4],
+        "crew tunnel" :[1, 2],
+        "cockpit"     :[2, 4]
+    },
+
+    "docking_nodes":
+    {
+        "rear_port":[0, 2]
+    }
+}        
 ```
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
