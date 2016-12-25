@@ -74,9 +74,19 @@ Modules are specified in a JSON format. The format specifies
 module external and internal size, air volume, and resource info.
 Resources are either stored in Containers, or created by Generators.
 
-**Interior Coordinates**
+**Interior and Exterior Coordinates**
 Modules have an internal coordinate system, roughly equivalent to metres.
 Most modules have a height of 4, with narrows (docking tunnels etc) of 2.
+On each side of the interior should be a padding of 2. Inside here 
+
+**Textures**
+Modules contain both an Interior and Exterior texture. Each coordinate consists
+of a 64x64 square. Image coordinates relative to the image are calculated using
+this sizing, so it must be followed. In the below example, the ship has an internal
+size of 10x4. Adding the 2 exterior on each side gives 14x8. 
+* 14 * 64 = 896
+* 8  * 64 = 512
+As such the image is 896x512.
 
 An example module.json, for the TKS itself, is below.
 ```
