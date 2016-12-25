@@ -46,6 +46,37 @@ a Living Space, Computer Room, Engine Room, or more.
 * Internal and External Collider
 * Hatches / States (Open / Closed / Moving)
 
+
+The interior of each module is effectively a cylinder with varying widths.
+Along the 
+
+#### Module format
+Modules can be specified in a file format. They are situated in a
+folder structure as below:
+```
+Modules/
+\
+ |
+ Module A/
+ | \
+ |  |-module.yaml
+ |  \-texture.png
+ |
+ Module B/
+   \
+    |-module.yaml
+    \-texture.png
+```  
+Modules are specified in a YAML format, in order to be both easily
+readable by Korabl and writeable by humans. The format specifies
+module external and internal size, air volume, and resource info.
+Resources are either stored in Containers, or created by Generators.
+
+An example module.yaml, for the Korabl itself, is below.
+
+```
+
+```
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
 * make a functional panel for control

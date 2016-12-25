@@ -5,7 +5,7 @@
 
 #include "space_math.hpp"
 
-const float GLOBAL_SCALE = 2;
+const float GLOBAL_SCALE = 1;
 
 //Player things
 const float X_SPEED = 0.3;
