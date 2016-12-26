@@ -24,4 +24,5 @@ TextureManager::TextureManager()
 {
     loadTexture("tks_shell.png", "./asset/tex/tks_shell.png");
     loadTexture("idle.png", "./asset/tex/natalya/idle.png");
+    loadTexture("int_texture.png", "./modules/TKS/int_texture.png");
 }
