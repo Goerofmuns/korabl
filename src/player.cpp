@@ -6,8 +6,6 @@
 #include "util.hpp"
 #include "space_math.hpp"
 
-bool still_pressed = false;
-
 int height;
 int width;
 sf::Text debug_text;
@@ -19,9 +17,10 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
     debug_text.setFont(debug_font);
     debug_text.setCharacterSize(34);
 
-	loc.X = 0;
-	loc.Y = 20;
-    delta.X = 0;
+	//loc.X = 0;
+	//loc.Y = 0;
+    //delta.X = 0;
+	//delta.Y = 0;
 
 	height = app->getSize().y;
 	width  = app->getSize().x;
@@ -60,10 +59,6 @@ void Player::handle_input()
 	{
 		delta.Y = Y_SPEED;
 	}
-
-	//Debouncing
-	if(!sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		still_pressed = false;
 }
 
 //This is gonna get ugly...
@@ -89,12 +84,6 @@ void Player::update()
 	if(delta.X < 0.01 && delta.X > -0.01)
 		delta.X = 0;
 
-	//Don't fly into space
-	if(loc.X < X_MIN)
-		loc.X = X_MIN;
-	if(loc.X > X_MAX)
-		loc.X = X_MAX;
-
     // Y STUFF
 	//Don't go too fast
 	if(delta.Y > 0.3)
@@ -112,23 +101,20 @@ void Player::update()
 	if(delta.Y < 0.01 && delta.Y > -0.01)
 		delta.Y = 0;
 
-	//Don't fly into space
-	if(loc.Y < Y_MIN)
-		loc.Y = Y_MIN;
-	if(loc.Y > Y_MAX)
-		loc.Y = Y_MAX;
 
-    debug_text.setString(std::string("[DEBUG]POS:") + std::to_string(loc.X));
+    debug_text.setString(
+		std::string("POS:") + std::to_string(loc.X) + "," + std::to_string(loc.Y) +
+				  "\nDEL:" + std::to_string(delta.X) + "," + std::to_string(delta.Y));
 }
 
 void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 {
+    win->draw(debug_text);
+
 	//Middle of screen plus local position
 	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y + (sin(clock->getElapsedTime().asSeconds())));
 	sprite->setRotation(delta.X * 20);
-	sprite->setScale(2.3, 2.3);
-
-    win->draw(debug_text);
+	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
 	win->draw(*sprite);
 }

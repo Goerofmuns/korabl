@@ -23,6 +23,6 @@ sf::Texture& TextureManager::getRef(const std::string& name)
 TextureManager::TextureManager()
 {
     loadTexture("tks_shell.png", "./asset/tex/tks_shell.png");
-    loadTexture("idle.png", "./asset/tex/natalya/idle.png");
+    loadTexture("idle.png", "./asset/tex/natalya/idle2.png");
     loadTexture("int_texture.png", "./modules/TKS/int_texture.png");
 }

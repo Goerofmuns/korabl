@@ -4,27 +4,17 @@
 #include <SFML/Graphics.hpp>
 
 #include "texture_manager.hpp"
+#include "module.hpp"
 #include "util.hpp"
 
 //The class that holds vessel info and data
-class Vessel : public GameObject
+class Vessel
 {
 public:
-	Vessel(sf::RenderWindow*, TextureManager*);
-
-	//void draw_panel(sf::RenderWindow);
-    virtual void update();
-	virtual void render(sf::RenderWindow*, sf::Clock*);
-
-    //individual properties
-    std::string shipName;
-    float pressure;
+	Vessel();
 
 private:
-
-	sf::Sprite *sprite;
-	sf::Texture *tex;
-
+	std::vector<Module> modules;
 };
 
 #endif
