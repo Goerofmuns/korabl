@@ -14,7 +14,7 @@ void Module::render(sf::RenderWindow *win, sf::Clock *clock)
     win->draw(*sprite);
 }
 
-Module::Module(string _name, string _description, int _size[2], int _volume, TextureManager *texman) : GameObject()
+Module::Module(string _name, string _description, int _size[2], int _volume, sf::RenderWindow *app, TextureManager *texman) : GameObject()
 {
     this->name = _name;
     this->description = _description;
@@ -26,8 +26,8 @@ Module::Module(string _name, string _description, int _size[2], int _volume, Tex
     this->sprite = new sf::Sprite;
     this->tex = &texman->getRef("int_texture.png");
 
-	int height = 500; //app->getSize().y;
-	int width  = 500; //app->getSize().x;
+	int height = app->getSize().y;
+	int width  = app->getSize().x;
 
     sprite->setTexture(*tex);
 	sprite->setOrigin((tex->getSize().x) / 2, (tex->getSize().y) / 2); //Middle of image
