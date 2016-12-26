@@ -19,8 +19,8 @@ public:
     int size[2] = {4, 10};
     int volume;
 
-    map<string, int[2]> sections = {{"docking_tunnel", {2, 2}}};
-    map<string, int[2]> docking_nodes = {{"rear_node", {0, 2}}};
+    map<string, int[2]> sections;
+    map<string, int[2]> docking_nodes;
 
     virtual void update();
     virtual void render(sf::RenderWindow*, sf::Clock*);

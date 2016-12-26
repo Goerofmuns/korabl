@@ -1,6 +1,10 @@
 #include <iostream>
+#include <string>
+
+using std::string;
 
 #include "game.hpp"
+#include "module.hpp"
 
 void Game::loop()
 {
@@ -51,4 +55,5 @@ Game::Game() : app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen), 
     //add gameobjects
     this->objectVector.push_back(new Player(&app, &texmgr));
     this->objectVector.push_back(new Vessel(&app, &texmgr));
+	this->objectVector.push_back(new Module(string("TKS"), string("space caravan"), {4, 10}, 45, {{"a", {4, 10}}}, {{"b", {0, 2}}}, &texmgr))
 }
