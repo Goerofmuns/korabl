@@ -14,11 +14,11 @@ void Module::render(sf::RenderWindow *win, sf::Clock *clock)
     win->draw(*sprite);
 }
 
-Module::Module(string _name, string _description, int _size[2], int _volume, sf::RenderWindow *app, TextureManager *texman) : GameObject()
+Module::Module(string _name, string _description, std::pair<int, int> _size, int _volume, sf::RenderWindow *app, TextureManager *texman) : GameObject()
 {
     this->name = _name;
     this->description = _description;
-//    this->size = _size;
+    this->size = _size;
     this->volume = _volume;
 //    this->sections = _sections;
 //    this->docking_nodes = _docking_nodes;
@@ -34,4 +34,4 @@ Module::Module(string _name, string _description, int _size[2], int _volume, sf:
 	sprite->setPosition(width/2, height/2); //Middle of screen
 	sprite->setRotation(0);
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
-}
+};

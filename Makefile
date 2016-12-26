@@ -3,7 +3,7 @@ OS := $(shell uname)
 ifeq ($(OS), Darwin)
 osx:
 	#we osx
-	clang++ --std=c++11 src/main.cpp src/vessel.cpp src/player.cpp src/texture_manager.cpp src/game.cpp src/module.cpp \
+	clang++ --std=c++11 src/main.cpp src/vessel.cpp src/player.cpp src/texture_manager.cpp src/game.cpp src/module.cpp src/module_parser.cpp \
 		-o korabl \
 		-I./src/ -I /usr/local/include \
 		-L ./libsfml \

@@ -6,5 +6,5 @@
 class ModuleParser
 {
 public:
-    static Module createModuleFromJSON(std::string);
-}
+    static Module* createModuleFromJSON(std::string);
+};

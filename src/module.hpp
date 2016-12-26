@@ -16,7 +16,7 @@ class Module : public GameObject
 public:
     string name;
     string description;
-    int size[2] = {4, 10};
+    std::pair<int, int> size;
     int volume;
 
     map<string, int[2]> sections;
@@ -24,7 +24,7 @@ public:
 
     virtual void update();
     virtual void render(sf::RenderWindow*, sf::Clock*);
-    Module(string _name, string _description, int _size[2], int _volume, sf::RenderWindow*, TextureManager*);
+    Module(string _name, string _description, std::pair<int, int> _size, int _volume, sf::RenderWindow*, TextureManager*);
 
 private:
     sf::Sprite *sprite;

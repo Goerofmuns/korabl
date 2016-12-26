@@ -106,7 +106,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
     win->draw(debug_text);
 
 	//Middle of screen plus local position
-	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y));
+	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y);
 
 	win->draw(*sprite);
 }

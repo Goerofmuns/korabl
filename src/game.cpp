@@ -53,7 +53,7 @@ Game::Game() : app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Resize), texm
 	this->view = app.getView(); //This is for resize thignys
 
     //add gameobjects
-	int arr[2] = {4, 10};
+	std::pair<int, int> arr = {4, 10};
 	this->objectVector.push_back(new Module(string("TKS"), string("space caravan"), arr, 45, &app, &texmgr));
 
 //    this->objectVector.push_back(new Vessel());
