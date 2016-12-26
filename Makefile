@@ -3,12 +3,13 @@ OS := $(shell uname)
 ifeq ($(OS), Darwin)
 osx:
 	#we osx
-	clang++ --std=c++11 src/main.cpp src/vessel.cpp src/player.cpp src/texture_manager.cpp src/game.cpp \
+	clang++ --std=c++11 src/main.cpp src/vessel.cpp src/player.cpp src/texture_manager.cpp src/game.cpp src/module.cpp \
 		-o korabl \
 		-I./src/ -I /usr/local/include \
 		-L ./libsfml \
 		-lsfml-graphics -lsfml-window -lsfml-system \
-		-Wall
+		-Wall \
+		-g
 
 else
 linux:
@@ -23,3 +24,4 @@ endif
 
 clean:
 	rm ./korabl
+	rm ./korabl.dSYM

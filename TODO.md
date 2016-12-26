@@ -8,7 +8,6 @@ This file is where I put all of the stuff I think of, so I don't forget it.
 * Implement a modular system for panels
 * remove the hardcoded aspects, make parts and ships more modular
 * get texture manager to auto scan textures
-* better movement system, maybe use mouse?
 * game heirarchy:
 ```
     Space
@@ -34,6 +33,7 @@ consists of a tree structure of modules. A vessel has several properties:
 * Mass
 
 On each game tick the vessels are moved based on their velocty.
+Vessels should be serializable, in order for multiplayer to function.
 
 ### Module
 The Module class is a single part of a vessel. It connects to other
@@ -46,6 +46,71 @@ a Living Space, Computer Room, Engine Room, or more.
 * Internal and External Collider
 * Hatches / States (Open / Closed / Moving)
 
+
+The interior of each module is effectively a cylinder with varying widths.
+Along the 
+
+#### Module format
+Modules can be specified in a file format. They are situated in a
+folder structure as below:
+```
+modules/
+\
+ |
+ Module A/
+ | \
+ |  |-module.json
+ |  |-int_texture.png
+ |  \-ext_texture.png
+ |
+ Module B/
+   \
+    |-module.json
+    |-int_texture.png
+    \-ext_texture.png
+```  
+
+Modules are specified in a JSON format. The format specifies
+module external and internal size, air volume, and resource info.
+Resources are either stored in Containers, or created by Generators.
+
+**Interior and Exterior Coordinates**
+Modules have an internal coordinate system, roughly equivalent to metres.
+Most modules have a height of 4, with narrows (docking tunnels etc) of 2.
+On each side of the interior should be a padding of 2. Inside here 
+
+**Textures**
+Modules contain both an Interior and Exterior texture. Each coordinate consists
+of a 64x64 square. Image coordinates relative to the image are calculated using
+this sizing, so it must be followed. In the below example, the ship has an internal
+size of 10x4. Adding the 2 exterior on each side gives 14x8. 
+* 14 * 64 = 896
+* 8  * 64 = 512
+As such the image is 896x512.
+
+An example module.json, for the TKS itself, is below.
+```
+{
+    "name":"TKS",
+    "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van.",
+    "size":[10,4],
+    "volume":45,
+
+    "sections":
+    {
+        /* [width, height] */
+        "docking port":[2, 2],
+        "living space":[5, 4],
+        "crew tunnel" :[1, 2],
+        "cockpit"     :[2, 4]
+    },
+
+    "docking_nodes":
+    {
+        "rear_port":[0, 2]
+    }
+}        
+```
 ##Computer
 * integrate the CPU from [Astro](https://github.com/Goerofmuns/Astro)
 * make a functional panel for control

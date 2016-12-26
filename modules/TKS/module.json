@@ -1,0 +1,21 @@
+
+{
+    "name":"TKS",
+    "description":"A VA capsule connected to a FGB, the TKS is a veritable Space Camper van.",
+    "size":[10,4],
+    "volume":45,
+
+    "sections":
+    {
+        /* [width, height] */
+        "docking port":[2, 2],
+        "living space":[5, 4],
+        "crew tunnel" :[1, 2],
+        "cockpit"     :[2, 4]
+    },
+
+    "docking_nodes":
+    {
+        "rear_port":[0, 2]
+    }
+}        
