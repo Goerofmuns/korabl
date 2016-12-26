@@ -19,8 +19,8 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 
 	//loc.X = 0;
 	//loc.Y = 0;
-    //delta.X = 0;
-	//delta.Y = 0;
+    //lin_delta.X = 0;
+	//lin_delta.Y = 0;
 
 	height = app->getSize().y;
 	width  = app->getSize().x;
@@ -43,68 +43,67 @@ void Player::handle_input()
 	//Left/Right movement
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		delta.X = -X_SPEED;
+		lin_delta.X = -X_SPEED;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		delta.X = X_SPEED;
+		lin_delta.X = X_SPEED;
 	}
 
     //Up/Down movement
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		delta.Y = -Y_SPEED;
+		lin_delta.Y = -Y_SPEED;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		delta.Y = Y_SPEED;
+		lin_delta.Y = Y_SPEED;
 	}
 }
 
 //This is gonna get ugly...
 void Player::update()
 {
-	//Handle it.
 	handle_input();
 
     // X STUFF
 	//Don't go too fast
-	if(delta.X > 0.3)
-		delta.X = 0.3;
-	if(delta.X < -0.3)
-		delta.X = -0.3;
+	if(lin_delta.X > 0.3)
+		lin_delta.X = 0.3;
+	if(lin_delta.X < -0.3)
+		lin_delta.X = -0.3;
 
-	loc.X += delta.X;
+	loc.X += lin_delta.X;
 
 	//Don't keep going
-	if(delta.X < 0.00)
-		delta.X += 0.001;
-	if(delta.X > 0.00)
-		delta.X -= 0.001;
-	if(delta.X < 0.01 && delta.X > -0.01)
-		delta.X = 0;
+	if(lin_delta.X < 0.00)
+		lin_delta.X += 0.001;
+	if(lin_delta.X > 0.00)
+		lin_delta.X -= 0.001;
+	if(lin_delta.X < 0.01 && lin_delta.X > -0.01)
+		lin_delta.X = 0;
 
     // Y STUFF
 	//Don't go too fast
-	if(delta.Y > 0.3)
-		delta.Y = 0.3;
-	if(delta.Y < -0.3)
-		delta.Y = -0.3;
+	if(lin_delta.Y > 0.3)
+		lin_delta.Y = 0.3;
+	if(lin_delta.Y < -0.3)
+		lin_delta.Y = -0.3;
 
-	loc.Y += delta.Y;
+	loc.Y += lin_delta.Y;
 
 	//Don't keep going
-	if(delta.Y < 0.00)
-		delta.Y += 0.001;
-	if(delta.Y > 0.00)
-		delta.Y -= 0.001;
-	if(delta.Y < 0.01 && delta.Y > -0.01)
-		delta.Y = 0;
+	if(lin_delta.Y < 0.00)
+		lin_delta.Y += 0.001;
+	if(lin_delta.Y > 0.00)
+		lin_delta.Y -= 0.001;
+	if(lin_delta.Y < 0.01 && lin_delta.Y > -0.01)
+		lin_delta.Y = 0;
 
 
     debug_text.setString(
 		std::string("POS:") + std::to_string(loc.X) + "," + std::to_string(loc.Y) +
-				  "\nDEL:" + std::to_string(delta.X) + "," + std::to_string(delta.Y));
+				  "\nDEL:" + std::to_string(lin_delta.X) + "," + std::to_string(lin_delta.Y));
 }
 
 void Player::render(sf::RenderWindow *win, sf::Clock *clock)
@@ -113,7 +112,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 
 	//Middle of screen plus local position
 	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y + (sin(clock->getElapsedTime().asSeconds())));
-	sprite->setRotation(delta.X * 20);
+	sprite->setRotation(lin_delta.X * 20);
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
 	win->draw(*sprite);

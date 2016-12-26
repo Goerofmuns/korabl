@@ -15,15 +15,16 @@ class GameObject
 {
 public:
     Math::Vector2 loc;
-    Math::Vector2 delta;
+    Math::Vector2 lin_delta;
     float rot;
+    float rot_delta;
 
     virtual void update() = 0;
     virtual void render(sf::RenderWindow*, sf::Clock*) = 0;
     inline GameObject()
     {
         this->loc = Math::Vector2(0.0, 0.0);
-        this->delta = Math::Vector2(0.0, 0.0);
+        this->lin_delta = Math::Vector2(0.0, 0.0);
     }
 };
 
