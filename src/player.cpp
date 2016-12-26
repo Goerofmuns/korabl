@@ -111,7 +111,7 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
     win->draw(debug_text);
 
 	//Middle of screen plus local position
-	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y + (sin(clock->getElapsedTime().asSeconds())));
+	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y));
 	sprite->setRotation(lin_delta.X * 20);
 	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
