@@ -1,7 +1,8 @@
 #ifndef __SPACE_MATH_H__
 #define __SPACE_MATH_H__
 
-#include<cmath>
+#include <cmath>
+#include <string>
 
 namespace Math
 {
@@ -14,6 +15,11 @@ namespace Math
         {
             X = _x;
             Y = _y;
+        }
+
+        std::string to_string()
+        {
+            return(std::to_string(X) + "," + std::to_string(Y));
         }
 
         double length()

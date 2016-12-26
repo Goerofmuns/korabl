@@ -102,8 +102,8 @@ void Player::update()
 
 
     debug_text.setString(
-		std::string("POS:") + std::to_string(loc.X) + "," + std::to_string(loc.Y) +
-				  "\nDEL:" + std::to_string(lin_delta.X) + "," + std::to_string(lin_delta.Y));
+		std::string("POS:") + loc.to_string() +
+				  "\nDEL:"  + lin_delta.to_string());
 }
 
 void Player::render(sf::RenderWindow *win, sf::Clock *clock)
