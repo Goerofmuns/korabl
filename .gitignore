@@ -2,3 +2,6 @@
 korabl
 *.dSYM
 .vscode
+GTAGS
+GRTAGS
+GPATH
