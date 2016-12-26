@@ -13,7 +13,7 @@ sf::Font debug_font;
 
 Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 {
-    debug_font.loadFromFile("Courier New.ttf");
+    debug_font.loadFromFile("asset/Courier New.ttf");
     debug_text.setFont(debug_font);
     debug_text.setCharacterSize(34);
 
