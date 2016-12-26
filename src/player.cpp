@@ -27,6 +27,7 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
 	width  = app->getSize().x;
 
 	//Init texture
+	this->idle_tex = &texmgr->getRef("idle.png");
 	sprite = new sf::Sprite;
 
 	//Load textures
