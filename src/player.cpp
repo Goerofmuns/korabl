@@ -17,11 +17,6 @@ Player::Player(sf::RenderWindow* app, TextureManager* texmgr) : GameObject()
     debug_text.setFont(debug_font);
     debug_text.setCharacterSize(34);
 
-	//loc.X = 0;
-	//loc.Y = 0;
-    //lin_delta.X = 0;
-	//lin_delta.Y = 0;
-
 	height = app->getSize().y;
 	width  = app->getSize().x;
 
@@ -112,8 +107,6 @@ void Player::render(sf::RenderWindow *win, sf::Clock *clock)
 
 	//Middle of screen plus local position
 	sprite->setPosition((width/2) + loc.X, (height/2) + loc.Y));
-	sprite->setRotation(lin_delta.X * 20);
-	sprite->setScale(GLOBAL_SCALE, GLOBAL_SCALE);
 
 	win->draw(*sprite);
 }

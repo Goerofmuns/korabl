@@ -24,4 +24,4 @@ endif
 
 clean:
 	rm ./korabl
-	rm ./korabl.dSYM
+	rm -r ./korabl.dSYM
