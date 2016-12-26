@@ -14,7 +14,7 @@ void Module::render(sf::RenderWindow *win, sf::Clock *clock)
     win->draw(*sprite);
 }
 
-Module::Module(string _name, string _description, int _size[2], int _volume, map<string, int[2]> _sections, map<string, int[2]> _docking_nodes, TextureManager *texman) : GameObject()
+Module::Module(string _name, string _description, int _size[2], int _volume, TextureManager *texman) : GameObject()
 {
     this->name = _name;
     this->description = _description;

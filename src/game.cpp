@@ -55,5 +55,7 @@ Game::Game() : app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Fullscreen), 
     //add gameobjects
     this->objectVector.push_back(new Player(&app, &texmgr));
     this->objectVector.push_back(new Vessel(&app, &texmgr));
-	this->objectVector.push_back(new Module(string("TKS"), string("space caravan"), {4, 10}, 45, {{"a", {4, 10}}}, {{"b", {0, 2}}}, &texmgr))
+
+	int arr[2] = {4, 10};
+	this->objectVector.push_back(new Module(string("TKS"), string("space caravan"), arr, 45, &texmgr));
 }
