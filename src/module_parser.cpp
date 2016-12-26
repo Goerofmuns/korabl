@@ -1,11 +1,7 @@
 #include "module_parser.hpp"
-
-ModuleParser::ModuleParser()
-{
-
-}
+#include "json.hpp"
 
 ModuleParser::createModuleFromJSON(std::string jsonString)
 {
-    
+
 }
