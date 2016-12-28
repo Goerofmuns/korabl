@@ -5,6 +5,7 @@ using std::string;
 
 #include "game.hpp"
 #include "module.hpp"
+#include "module_parser.hpp"
 
 void Game::loop()
 {
@@ -59,4 +60,6 @@ Game::Game() : app(sf::VideoMode(1680, 1050), "korabl", sf::Style::Resize), texm
 //    this->objectVector.push_back(new Vessel());
     this->objectVector.push_back(new Player(&app, &texmgr));
 
+	std::string test_string = std::string("{ \"a\":1 }");
+	Module* m = ModuleParser::createModuleFromJSON(test_string);
 }
